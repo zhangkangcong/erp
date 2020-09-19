@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "shiro.hash-algorithm-name",
+      "type": "java.lang.String",
+      "description": "Description for shiro.hash-algorithm-name."
+    },
+    {
+      "name": "shiro.login-url",
+      "type": "java.lang.String",
+      "description": "Description for shiro.login-url."
+    }
+  ] }

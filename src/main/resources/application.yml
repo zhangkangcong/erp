@@ -1,0 +1,90 @@
+server:
+   port: 8080
+#配置数据源的属性
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/zkc?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=UTC
+      username: root
+      password: 123456
+      max-active: 20
+      max-wait: 5000
+      initial-size: 1
+      filters: stat,log4j,wall
+      validationQuery: SELECT 'x'   #验证连接
+      enable: true
+   #监控配置
+      stat-view-servlet:
+        enabled: true
+        login-username: root
+        login-password: 123456
+        allow: 
+        deny: 
+        url-pattern: /druid/*
+  #thymeleaf的配置 
+  thymeleaf: 
+    cache: false
+    enabled: true
+#      web-stat-filter: 
+#        enabled: true
+#        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+#  aop:
+#    proxy-target-class: true
+#配置mybatisplus
+mybatis-plus:
+  mapper-locations:
+  - classpath:mapper/*/*Mapper.xml
+  global-config:
+    db-config:
+      id-type: auto
+    banner: true
+ #configuration:
+   # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#redis配置
+spring.redis:
+ host: 101.132.78.159
+ password: redis
+ port: 16378
+ jedis:
+   pool:
+     max-active: 20
+     max-idle: 8
+     min-idle: 0
+     max-wait: 2000
+
+#shiro的配置
+shiro:
+  hash-algorithm-name: md5
+  hash-iterations: 2
+  login-url: /index.html
+  anon-urls:
+  - /**
+  - /index.html*
+  - /sys/toLogin*
+  - /login/login*
+  - /resources/**
+  logout-url: /login/logout*
+  authc-ulrs:
+   # - /**
+
+#fastdfs设置
+fdfs:
+  so-timeout: 2500         #读取时间
+  connect-timeout: 5000     #连接超时时间
+  thumb-image:
+    width: 100
+    height: 100
+  tracker-list:            #tracker服务配置地址列表
+    - www.leige.tech:22122
+upload:
+  base-url: www.leige.tech/
+  allow-types:             #允许的类型
+    - image/jpeg
+    - image/png
+    - image/bmp
